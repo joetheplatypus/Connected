@@ -12,17 +12,18 @@ module.exports = {
       res.send(err)
     }
   },
-  async update (req,res) {
+  async put (req,res) {
     try {
-      posts = await Post.findOneAndUpdate({_id: req.params.postId},req.body,{new:true})
-      res.send(posts)
+      user = await User.findOneAndUpdate({_id: req.userId},req.body,{new:true})
+      user.password = undefined
+      res.send(user)
     } catch (err) {
       res.send(err)
     }
   },
   async delete (req, res) {
     try {
-      cb = await Post.deleteOne({_id: req.params.postId})
+      cb = await User.deleteOne({_id: req.userId})
       res.send(cb)
     } catch (err) {
       res.send(err)

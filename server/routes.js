@@ -1,7 +1,9 @@
 const PostController = require('./controllers/PostController');
 const AuthController = require('./controllers/AuthController');
 const ProfileController = require('./controllers/ProfileController');
+const UserController = require('./controllers/UserController');
 
+//checks for login, if not sends error
 const CheckToken = require('./middleware/CheckToken')
 
 module.exports = function(app) {
@@ -17,7 +19,11 @@ module.exports = function(app) {
   app.post('/register', AuthController.register)
 
   //Current User Profile
-  app.get('/me', CheckToken, ProfileController.info)
+  app.get('/profile', CheckToken, ProfileController.info)
+  app.put('/profile', CheckToken, ProfileController.put)
+  app.delete('/profile', CheckToken, ProfileController.delete)
 
   //Users
+  app.get('/users', UserController.index)
+  app.get('/users/:userId', UserController.get)
 }

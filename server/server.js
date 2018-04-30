@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
-const routes = require('./routes')
+const routes = require('./routes');
+const cors = require('cors');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+app.use(cors())
 
 mongoose.connect('mongodb://localhost:27017/connected');
 var db = mongoose.connection
@@ -23,5 +25,5 @@ rmv()
 
 const port = 8000;
 app.listen(port, () => {
-  console.log('We are live on ' + port);
+  console.log('Server started on port ' + port);
 });
