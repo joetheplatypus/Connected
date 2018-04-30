@@ -1,21 +1,25 @@
 <template>
   <v-container>
     <h1 class="ma-3 pa-3">All Posts</h1>
-    <v-layout>
-      <v-flex xs8 offset-xs2 v-for="post in posts" :key="post._id">
+    <v-layout row wrap>
+      <v-flex xs8 offset-xs2 v-for="post in posts" :key="post._id" class="mb-3">
         <v-card class="pa-1">
           <v-card-title>
-            <div class="tal">
-              <h3 class="headline mb-0 pa-2">User with ID {{post.userId}} </h3>
-              <div class="pa-2">{{post.message}}</div>
-            </div>
+            <v-layout row>
+              <v-flex xs9 class="tal">
+                <h2>User with ID {{post.userId}}</h2>
+              </v-flex>
+              <v-flex xs3 class="mgfix">
+                <div>{{post.date.toGMTString()}}</div>
+              </v-flex>
+            </v-layout>
           </v-card-title>
+          <v-container class="tal">
+            {{post.message}}
+          </v-container>
         </v-card>
       </v-flex>
     </v-layout>
-    <div v-for="post in posts" :key="post._id">
-      {{post.message}} - Posted by user with ID {{post.userId}} - {{post.date.toGMTString()}}
-    </div>
   </v-container>
 </template>
 
@@ -46,5 +50,8 @@ export default {
 <style scoped>
   .tal {
     text-align: left;
+  }
+  .mgfix {
+    margin: auto;
   }
 </style>
