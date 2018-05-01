@@ -11,7 +11,13 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(cors())
 
-mongoose.connect('mongodb://localhost:27017/connected');
+mongoose.connect('mongodb://localhost:27017/connected', function(err, db) {
+    if (err) {
+        console.log('Unable to connect to database. Error:', err);
+    } else {
+        console.log('Connected to Database');
+    }
+});
 var db = mongoose.connection
 
 routes(app)

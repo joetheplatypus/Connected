@@ -4,7 +4,8 @@
     <v-layout>
       <v-flex xs8 offset-xs2>
         <v-card class="pa-1">
-          <v-form v-model="valid" v-on:submit.prevent="submit()">
+          <v-container>
+            <v-form v-model="valid" v-on:submit.prevent="submit()">
             <v-text-field
               label="Message"
               v-model= "post.message"
@@ -13,6 +14,7 @@
             <v-btn @click="submit()">Post</v-btn>
           </v-form>
           <div v-html="error"></div>
+          </v-container>
         </v-card>
       </v-flex>
     </v-layout>

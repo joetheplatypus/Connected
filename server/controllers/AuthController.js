@@ -30,6 +30,7 @@ module.exports = {
       const pwdMatch = bcrypt.compareSync(req.body.password, user.password)
       if(!pwdMatch) {
         res.send({auth: false, token:null})
+        return;
       } else {
         const token = jwt.sign({id:user._id}, config.secret, {
           expiresIn: 86400
