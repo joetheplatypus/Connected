@@ -50,6 +50,9 @@ export default {
         this.$store.dispatch('setToken', response.token);
         this.$store.dispatch('setUser', response.user);
         this.$store.dispatch('setLoggedIn', true);
+        this.$router.push({
+          name: 'posts',
+        });
       } else {
         this.error = 'invalid login';
       }

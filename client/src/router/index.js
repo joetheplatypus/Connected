@@ -4,10 +4,11 @@ import IndexPosts from '@/components/posts/IndexPosts';
 import CreatePost from '@/components/posts/CreatePost';
 import ViewProfile from '@/components/profile/ViewProfile';
 import Login from '@/components/auth/Login';
+import Store from '@/store/';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -31,3 +32,13 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'login' || to.name === 'register' || Store.state.loggedIn) {
+    next();
+  } else {
+    next(false);
+  }
+});
+
+export default router;
