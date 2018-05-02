@@ -11,14 +11,15 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(cors())
 
-mongoose.connect('mongodb://localhost:27017/connected', function(err, db) {
-    if (err) {
-        console.log('Unable to connect to database. Error:', err);
-    } else {
-        console.log('Connected to Database');
-    }
-});
-var db = mongoose.connection
+const db = {};
+mongoose.connect('mongodb://localhost:27017/connected', function() { /* dummy function */ })
+    .then(() => {
+      console.log('Connected to database');
+    })
+    .catch(err => { // mongoose connection error will be handled here
+        console.error('Coudld not connect to database');
+        process.exit(1);
+    });
 
 routes(app)
 
@@ -27,7 +28,7 @@ const Posts = require('./models/Posts')
 async function rmv () {
   await Posts.remove()
 }
-rmv()
+//rmv()
 
 const port = 8000;
 app.listen(port, () => {

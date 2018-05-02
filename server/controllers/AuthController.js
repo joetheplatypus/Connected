@@ -26,6 +26,7 @@ module.exports = {
       const user = await User.findOne({email:req.body.email})
       if(!user) {
         res.send({auth: false, token:null})
+        return;
       }
       const pwdMatch = bcrypt.compareSync(req.body.password, user.password)
       if(!pwdMatch) {
