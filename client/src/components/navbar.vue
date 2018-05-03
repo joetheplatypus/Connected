@@ -13,7 +13,7 @@
           <router-link to="/profile" tag="v-list-tile">
             <v-list-tile-title>Profile</v-list-tile-title>
           </router-link>
-          <router-link to="/profile" tag="v-list-tile">
+          <router-link to="/logout" tag="v-list-tile">
             <v-list-tile-title>Logout</v-list-tile-title>
           </router-link>
         </v-list>

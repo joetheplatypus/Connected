@@ -4,7 +4,7 @@ import IndexPosts from '@/components/posts/IndexPosts';
 import CreatePost from '@/components/posts/CreatePost';
 import ViewProfile from '@/components/profile/ViewProfile';
 import Login from '@/components/auth/Login';
-import Store from '@/store/';
+import Logout from '@/components/auth/Logout';
 
 Vue.use(Router);
 
@@ -26,6 +26,11 @@ const router = new Router({
       component: Login,
     },
     {
+      path: '/logout',
+      name: 'logout',
+      component: Logout,
+    },
+    {
       path: '/profile',
       name: 'profile',
       component: ViewProfile,
@@ -34,7 +39,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === 'login' || to.name === 'register' || Store.state.loggedIn) {
+  if (to.name === 'login' || to.name === 'register' || window.localStorage.getItem('token')) {
     next();
   } else {
     next(false);

@@ -22,6 +22,7 @@
 </template>
 
 <script>
+/* eslint-disable no-underscore-dangle */
 import PostService from '@/services/PostService';
 
 export default {
@@ -30,7 +31,7 @@ export default {
       valid: false,
       post: {
         message: '',
-        userId: 3,
+        userId: '',
         date: '',
       },
       error: '',
@@ -38,8 +39,13 @@ export default {
   },
   methods: {
     async submit() {
+      const uid = this.$store.state.user._id;
+      this.post.userId = uid;
       try {
         await PostService.post(this.post);
+        this.$router.push({
+          name: 'posts',
+        });
       } catch (err) {
         this.error = err;
       }
