@@ -28,7 +28,7 @@ const Posts = require('./models/Posts')
 async function rmv () {
   await Posts.remove()
 }
-//rmv()
+// rmv()
 
 const port = 8000;
 app.listen(port, () => {

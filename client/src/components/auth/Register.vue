@@ -68,7 +68,7 @@
                   :max="new Date().toISOString().substr(0, 10)"
                 ></v-date-picker>
               </v-menu>
-              <v-btn @click="submit()">Log In</v-btn>
+              <v-btn @click="submit()">Create Account</v-btn>
             </v-form>
             <div>{{error}}</div>
           </v-container>
