@@ -5,6 +5,7 @@ import CreatePost from '@/components/posts/CreatePost';
 import ViewProfile from '@/components/profile/ViewProfile';
 import Login from '@/components/auth/Login';
 import Logout from '@/components/auth/Logout';
+import Register from '@/components/auth/Register';
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     {
       path: '/logout',

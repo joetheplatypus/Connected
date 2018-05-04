@@ -6,21 +6,21 @@
         <v-card class="pa-1">
           <v-container>
             <v-form v-model="valid" v-on:submit.prevent="submit()">
-            <v-text-field
-              label="email"
-              v-model= "user.email"
-              :rules="[v => !!v || 'Please enter you email address']"
-              required
-            ></v-text-field>
-            <v-text-field
-              label="password"
-              v-model= "user.password"
-              :rules="[v => !!v || 'Password is empty']"
-              required
-            ></v-text-field>
-            <v-btn @click="submit()">Log In</v-btn>
-          </v-form>
-          <div>{{error}}</div>
+              <v-text-field
+                label="email"
+                v-model= "user.email"
+                :rules="[v => !!v || 'Please enter you email address']"
+                required
+              ></v-text-field>
+              <v-text-field
+                label="password"
+                v-model= "user.password"
+                :rules="[v => !!v || 'Password is empty']"
+                required
+              ></v-text-field>
+              <v-btn @click="submit()">Log In</v-btn>
+            </v-form>
+            <div>{{error}}</div>
           </v-container>
         </v-card>
       </v-flex>

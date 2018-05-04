@@ -19,7 +19,7 @@
         </v-list>
       </v-menu>
       <v-btn flat to='/login' v-if='!$store.state.loggedIn'> Login </v-btn>
-      <v-btn flat v-if='!$store.state.loggedIn'> Register </v-btn>
+      <v-btn flat to='/register' v-if='!$store.state.loggedIn'> Register </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
