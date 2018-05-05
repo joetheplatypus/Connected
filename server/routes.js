@@ -10,9 +10,9 @@ module.exports = function(app) {
   //Posts
   app.get('/posts', PostController.index)
   app.get('/posts/:postId', PostController.get)
-  app.post('/posts', PostController.post)
-  app.put('/posts/:postId', PostController.put)
-  app.delete('/posts/:postId', PostController.delete)
+  app.post('/posts', CheckToken, PostController.post)
+  app.put('/posts/:postId', CheckToken, PostController.put)
+  app.delete('/posts/:postId', CheckToken, PostController.delete)
 
   //Authentication
   app.post('/login', AuthController.login)

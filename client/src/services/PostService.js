@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Api from '@/services/Api';
 
 export default {
@@ -11,7 +12,7 @@ export default {
     return Api().post('posts', post);
   },
   put(post) {
-    return Api().put(`posts/${post.id}`, post);
+    return Api().put(`posts/${post._id}`, post);
   },
   delete(postId) {
     return Api().delete(`posts/${postId}`);

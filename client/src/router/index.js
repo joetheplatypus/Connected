@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import IndexPosts from '@/components/posts/IndexPosts';
 import CreatePost from '@/components/posts/CreatePost';
+import EditPost from '@/components/posts/EditPost';
+import ViewPost from '@/components/posts/ViewPost';
 import ViewProfile from '@/components/profile/ViewProfile';
 import Login from '@/components/auth/Login';
 import Logout from '@/components/auth/Logout';
@@ -20,6 +22,16 @@ const router = new Router({
       path: '/posts/create',
       name: 'create-post',
       component: CreatePost,
+    },
+    {
+      path: '/posts/:postId/edit',
+      name: 'edit-post',
+      component: EditPost,
+    },
+    {
+      path: '/posts/:postId',
+      name: 'view-post',
+      component: ViewPost,
     },
     {
       path: '/login',

@@ -4,6 +4,9 @@ module.exports = {
   async post (req,res) {
     try {
       const post = await Post.create(req.body)
+      if(post.userId !== req.userId) {
+        throw 'cannot post as someone else'
+      }
       res.send(post)
     } catch (err) {
       res.send(err)
@@ -27,14 +30,21 @@ module.exports = {
   },
   async put (req,res) {
     try {
-      posts = await Post.findOneAndUpdate({_id: req.params.postId},req.body,{new:true})
-      res.send(posts)
+      if(req.body.userId !== req.userId) {
+        throw 'cannot post as someone else'
+      }
+      post = await Post.findOneAndUpdate({_id: req.params.postId},req.body,{new:true})
+      res.send(post)
     } catch (err) {
       res.send(err)
     }
   },
   async delete (req, res) {
     try {
+      post = await Post.findOne({_id: req.params.postId})
+      if(post.userId !== req.userId) {
+        throw 'cannot post as someone else'
+      }
       cb = await Post.deleteOne({_id: req.params.postId})
       res.send(cb)
     } catch (err) {

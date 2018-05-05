@@ -23,6 +23,14 @@
                   </v-layout>
                 </v-card-title>
                 <v-container class="tal">
+                  <router-link
+                    tag="v-icon"
+                    v-if="post.myPost"
+                    :to="`posts/${post._id}/edit/`"
+                    class="click"
+                  >
+                    edit
+                  </router-link>
                   {{post.message}}
                 </v-container>
               </v-card>
@@ -42,6 +50,14 @@
                   </v-layout>
                 </v-card-title>
                 <v-container class="tal">
+                  <router-link
+                    tag="v-icon"
+                    v-if="post.myPost"
+                    :to="`posts/${post._id}/edit/`"
+                    class="click"
+                  >
+                    edit
+                  </router-link>
                   {{post.message}}
                 </v-container>
               </v-card>
@@ -56,6 +72,7 @@
 <script>
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable no-underscore-dangle */
 import PostService from '@/services/PostService';
 import UserService from '@/services/UserService';
 
@@ -85,10 +102,8 @@ export default {
     for (let i = 0; i < dposts.length; i += 1) {
       const poster = (await UserService.get(dposts[i].userId)).data;
       dposts[i].poster = poster;
-      if (poster.firstname === 'Joe') {
-        dposts[i].order = 10;
-      } else {
-        dposts[i].order = 1;
+      if (poster._id === this.$store.state.user._id) {
+        dposts[i].myPost = true;
       }
       if (i % 2 === 0) {
         this.lposts.push(dposts[i]);
@@ -122,5 +137,8 @@ export default {
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
+  }
+  .click {
+    cursor: pointer;
   }
 </style>
