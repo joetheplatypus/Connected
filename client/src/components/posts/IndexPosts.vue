@@ -82,10 +82,18 @@ export default {
       posts: [],
       lposts: [],
       rposts: [],
+      cachedPosters: [],
     };
   },
   methods: {
-
+    alreadyCached(id) {
+      for (let i = 0; i < this.cachedPosters.length; i += 1) {
+        if (this.cachedPosters[i]._id === id) {
+          return i;
+        }
+      }
+      return false;
+    },
   },
   async mounted() {
     const data = (await PostService.index()).data;
@@ -100,9 +108,15 @@ export default {
     });
     dposts.sort((a, b) => (a.date > b.date ? -1 : a.date < b.date ? 1 : 0));
     for (let i = 0; i < dposts.length; i += 1) {
-      const poster = (await UserService.get(dposts[i].userId)).data;
-      dposts[i].poster = poster;
-      if (poster._id === this.$store.state.user._id) {
+      if (this.alreadyCached(dposts[i].userId)) {
+        const index = this.alreadyCached(dposts[i].userId);
+        dposts[i].poster = this.cachedPosters[index];
+      } else {
+        const poster = (await UserService.get(dposts[i].userId)).data;
+        this.cachedPosters.push(poster);
+        dposts[i].poster = poster;
+      }
+      if (dposts[i].poster._id === this.$store.state.user._id) {
         dposts[i].myPost = true;
       }
       if (i % 2 === 0) {
@@ -111,7 +125,6 @@ export default {
         this.rposts.push(dposts[i]);
       }
     }
-
     this.posts = dposts;
   },
 };

@@ -26,7 +26,7 @@
                 v-model="confirmPass"
                 :rules="[v => !!v || 'Please enter your new password']"
                 required
-              ></v-text-field>              
+              ></v-text-field>
               <v-btn @click="submit()">Save Changes</v-btn>
             </v-form>
             <div>{{error}}</div>
@@ -61,8 +61,11 @@ export default {
         return;
       }
       try {
-        const response = (await ProfileService.putPass({ currentPass: this.currentPass, newPass: this.newPass })).data;
-        if(response.error) {
+        const response = (await ProfileService.putPass({
+          currentPass: this.currentPass,
+          newPass: this.newPass,
+        })).data;
+        if (response.error) {
           this.error = response.error;
         }
       } catch (err) {
