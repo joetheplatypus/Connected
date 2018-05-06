@@ -5,6 +5,8 @@ import CreatePost from '@/components/posts/CreatePost';
 import EditPost from '@/components/posts/EditPost';
 import ViewPost from '@/components/posts/ViewPost';
 import ViewProfile from '@/components/profile/ViewProfile';
+import EditProfile from '@/components/profile/EditProfile';
+import EditPassword from '@/components/profile/EditPassword';
 import Login from '@/components/auth/Login';
 import Logout from '@/components/auth/Logout';
 import Register from '@/components/auth/Register';
@@ -52,6 +54,16 @@ const router = new Router({
       path: '/profile',
       name: 'profile',
       component: ViewProfile,
+    },
+    {
+      path: '/profile/edit',
+      name: 'edit-profile',
+      component: EditProfile,
+    },
+    {
+      path: '/profile/edit/password',
+      name: 'edit-password',
+      component: EditPassword,
     },
   ],
 });

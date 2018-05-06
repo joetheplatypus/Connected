@@ -21,6 +21,7 @@ module.exports = function(app) {
   //Current User Profile
   app.get('/profile', CheckToken, ProfileController.info)
   app.put('/profile', CheckToken, ProfileController.put)
+  app.put('/profile/password', CheckToken, ProfileController.putPass)
   app.delete('/profile', CheckToken, ProfileController.delete)
 
   //Users
